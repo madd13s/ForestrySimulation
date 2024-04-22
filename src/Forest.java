@@ -213,7 +213,7 @@ public class Forest {
 
         } catch (IOException exception) {
 
-            exception.printStackTrace();
+            System.out.println("Unable to save file - try again");;
 
         }// End of try-catch block
 
