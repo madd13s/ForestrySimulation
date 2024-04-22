@@ -37,6 +37,7 @@ public class Tree {
         this.yearPlanted = yearPlanted;
         this.height = height;
         this.growthRate = growthRate;
+
     }// End of Tree constructor
 
     /**
@@ -53,6 +54,7 @@ public class Tree {
         int yearPlanted = MINIMUM_YEAR_PLANTED + random.nextInt(MAXIMUM_YEAR_PLANTED); // Year between 2000 and 2024
         double height = MINIMUM_HEIGHT + random.nextDouble() * MAXIMUM_HEIGHT; // Height between 10 and 20 feet
         double growthRate = MINIMUM_GROWTH_RATE + random.nextDouble() * MAXIMUM_GROWTH_RATE; // Growth rate between 10% and 20%
+
         return new Tree(species, yearPlanted, height, growthRate);
 
     }// End of generateRandomTree method

@@ -129,6 +129,7 @@ public class Forestry {
                 }
 
             } while (!exitLoop);
+
             forestIndex++; // Move to the next forest
 
         }// End of while loop
