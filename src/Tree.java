@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -6,7 +7,7 @@ import java.util.Random;
  * @version 1.0
  * @see Tree
  */
-public class Tree {
+public class Tree implements Serializable {
 
     // Constants
     private static final int MINIMUM_YEAR_PLANTED = 2000;

@@ -71,43 +71,26 @@ public class Forest {
     }// End of loadForest method
 
     /**
-     * Loads tree data from a database file and populates the forest.
+     * Loads a previously saved db file.
      *
-     * @param dbFileName The name of the database file.
-     * @return true If loading is successful.
-     * @return false If loading is unsuccessful.
-     * @throws IOException If an I/O error occurs while reading the file.
-     * @throws IllegalArgumentException If the data in the file is invalid or corrupted.
+     * @param dbfileName The name of the db file.
+     * @return true If the file is opened.
+     * @return false If the file fails to open.
      * @see Forest
      */
-    public boolean loadForestFromDB(String dbFileName) {
+    public boolean loadForestFromDB(String dbfileName) {
 
-        // Try-catch block that tries to read the name of a database file
-            try (BufferedReader reader = new BufferedReader(new FileReader(dbFileName))) {
-                String line;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(dbfileName))) {
 
-                // Reads the tree data separated by commas
-                while ((line = reader.readLine()) != null) {
+            trees = (ArrayList<Tree>) inputStream.readObject();
+            return true;
 
-                    String[] data = line.split(",");
-
-                    // Converts database data to Tree data
-                    Tree.Species species = Tree.Species.valueOf(data[0]);
-                    int yearPlanted = Integer.parseInt(data[1]);
-                    double height = Double.parseDouble(data[2]);
-                    double growthRate = Double.parseDouble(data[3]);
-
-                    Tree tree = new Tree(species, yearPlanted, height, growthRate);
-                    this.trees.add(tree);
-                }
-                return true;
-
-            } catch (IOException | IllegalArgumentException exception) {
+        } catch (IOException | ClassNotFoundException exception) {
             return false;
 
-            }// End of try-catch block
+        }// End of try-catch block
 
-        }// End of loadForestFromDB method
+    }// End of loadForestFromDB method
 
     /**
      * Converts a string of a Tree species to its enum value.
@@ -217,25 +200,22 @@ public class Forest {
     }// End of reapForest method
 
     /**
-     * Saves the forest data to a database file.
+     * Saves the forest to a db file.
      *
-     * @throws FileNotFoundException If the file cannot be created.
+     * @throws IOException If file cannot be saved as a db file.
      * @see Forest
      */
     public void saveForest() {
 
-        // Try-catch block that tries to save the forest as a database file
-        try (PrintWriter writer = new PrintWriter(name + ".db")) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(name + ".db"))) {
 
-            for (Tree tree : trees) {
-                writer.println(tree.toCSV());
-            }
+            outputStream.writeObject(trees);
 
+        } catch (IOException exception) {
 
-        } catch (FileNotFoundException exception) {
             exception.printStackTrace();
 
-        }// End of try catch block
+        }// End of try-catch block
 
     }// End of saveForest method
 
