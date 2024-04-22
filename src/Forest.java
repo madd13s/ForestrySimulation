@@ -230,10 +230,10 @@ public class Forest {
             for (Tree tree : trees) {
                 writer.println(tree.toCSV());
             }
-            System.out.println("Forest saved to " + name + ".db");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
 
         }// End of try catch block
 
