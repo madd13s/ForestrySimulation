@@ -82,17 +82,6 @@ public class Tree implements Serializable {
     }// End of getHeight method
 
     /**
-     * Converts the Tree variables to CSV format.
-     *
-     * @return string Tree species, year planted, height, and growth rate in CSV format.
-     * @see Tree
-     */
-    public String toCSV() {
-        return species + "," + yearPlanted + "," + height + "," + growthRate;
-
-    }// End of toCSV method
-
-    /**
      * Constructs a string of the Tree information.
      *
      * @return string Tree species, year planted, height, and growth rate.

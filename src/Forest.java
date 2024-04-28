@@ -80,6 +80,7 @@ public class Forest {
      */
     public boolean loadForestFromDB(String dbfileName) {
 
+        // Try block that tries to read the db file
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(dbfileName))) {
 
             trees = (ArrayList<Tree>) inputStream.readObject();
@@ -207,6 +208,7 @@ public class Forest {
      */
     public void saveForest() {
 
+        // Try block that tries to write the current forest to a db file
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(name + ".db"))) {
 
             outputStream.writeObject(trees);
